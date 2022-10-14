@@ -4,14 +4,19 @@ const { callbackify } = require('util');
 
 const breedDetailsFromFile = function(breed, done) {
   console.log('breedDetailsFromFile: Calling readFile...');
-  fs.readFile(`./data/${breed}.txt`, 'utf8', (error, data) => {    
-    if (!error) done(data);
+  fs.readFile(`./data/${breed}.txt`, 'utf8', (error, data) => {   
+    if (!error) {
+      done(data);
+    } else {
+      done(undefined);
+    }
   });
 };
 
 const printCatBreed = breed => {
-  console.log('Return value: ', breed);
+    console.log('Return value: ', breed);
 }
 
-const bombay = breedDetailsFromFile('Bombay', printCatBreed);
-const balinese = breedDetailsFromFile('Balinese', printCatBreed);
+breedDetailsFromFile('Cheese', printCatBreed);
+
+module.exports = breedDetailsFromFile
